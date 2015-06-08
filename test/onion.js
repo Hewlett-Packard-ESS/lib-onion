@@ -4,6 +4,54 @@ var should = require('should');
 
 describe('Onion', function() {
 
+	it('Should allow me to start the onion with multiple arguments', function(done) {
+		var onion = new Onion('test-onion');
+		onion.add(function(msg, msg2, next, exit) {
+			should.exist(msg);
+			should.exist(msg2);
+			should.exist(next);
+			should.exist(exit);
+
+			msg.should.eql({
+				msg: 'hi'
+			});
+
+			msg2.should.eql({
+				msg2: 'hi'
+			});
+			msg.msg = 'hi again';
+			next(null, msg, msg2);
+		}, 'service1');
+
+		onion.add(function(msg, msg2, next, exit) {
+			should.exist(msg);
+			should.exist(msg2);
+			should.exist(next);
+			should.exist(exit);
+			msg.should.eql({
+				msg: 'hi again'
+			});
+
+			msg2.should.eql({
+				msg2: 'hi'
+			});
+
+			next(null, msg, msg2);
+		}, 'service2');
+
+		onion.handle({
+			msg: 'hi'
+		}, {
+			msg2: 'hi'
+		}, function(err, result) {
+			should(err).eql(null);
+			result.should.eql({
+				msg: 'hi again'
+			});
+			done();
+		});
+	});
+
 	it('Should chain one services result to the next', function(done) {
 		var onion = new Onion('test-onion');
 		onion.add(function(msg, next, exit) {
@@ -135,6 +183,5 @@ describe('Onion', function() {
 			done();
 		});
 	});
-
 
 });
