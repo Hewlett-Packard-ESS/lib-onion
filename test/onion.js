@@ -5,7 +5,7 @@ var should = require('should');
 describe('Onion', function() {
 
 	it('Should chain one services result to the next', function(done) {
-		var onion = new Onion.Onion('test-onion');
+		var onion = new Onion('test-onion');
 		onion.add(function(msg, next, exit) {
 			should.exist(msg);
 			should.exist(next);
@@ -40,7 +40,7 @@ describe('Onion', function() {
 	});
 
 	it('Should not go to the next service if current calls exit', function(done) {
-		var onion = new Onion.Onion('test-onion');
+		var onion = new Onion('test-onion');
 		onion.add(function(msg, next, exit) {
 			should.exist(msg);
 			should.exist(next);
@@ -68,7 +68,7 @@ describe('Onion', function() {
 	});
 
 	it('Should not go to the next service if current returns an error to next', function(done) {
-		var onion = new Onion.Onion('test-onion');
+		var onion = new Onion('test-onion');
 		onion.add(function(msg, next, exit) {
 			should.exist(msg);
 			should.exist(next);
@@ -91,7 +91,7 @@ describe('Onion', function() {
 	});
 
 	it('Should not go to the next service if current returns an error to exit', function(done) {
-		var onion = new Onion.Onion('test-onion');
+		var onion = new Onion('test-onion');
 		onion.add(function(msg, next, exit) {
 			should.exist(msg);
 			should.exist(next);
@@ -114,7 +114,7 @@ describe('Onion', function() {
 	});
 
 	it('Should not go to the next service if current throws an error', function(done) {
-		var onion = new Onion.Onion('test-onion');
+		var onion = new Onion('test-onion');
 		onion.add(function(msg, next, exit) {
 			should.exist(msg);
 			should.exist(next);
