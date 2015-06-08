@@ -1,7 +1,7 @@
 {
   "name": "lib-onion",
   "description": "Pipelining with early exit option.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/Hewlett-Packard-ESS/lib-onion",
   "author": {
     "name": "Karl Stoney",
