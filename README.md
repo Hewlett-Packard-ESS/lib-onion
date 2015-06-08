@@ -1,4 +1,4 @@
-# lib-onion  [![Dependency Status](https://david-dm.org/docker/lib-onion.svg)](https://david-dm.org/docker/lib-onion)
+# lib-onion 
 
 Pipelining with early exit option.  Similar to async.waterfall however with the ability to exit out of the waterfall at any point.
 
